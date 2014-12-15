@@ -1,6 +1,6 @@
 #!/bin/bash
-
-# Bash Color
+#
+## Bash Color
 green='\033[01;32m'
 red='\033[01;31m'
 blink_red='\033[05;31m'
@@ -13,27 +13,30 @@ THREAD="-j$(grep -c ^processor /proc/cpuinfo)"
 KERNEL="zImage"
 DTBIMAGE="dtb"
 DEFCONFIG="ak_bacon_defconfig"
+BUILD_HOME="/usr/local/src/opo-ak-kernel"
 
 # Kernel Details
 BASE_AK_VER="AK"
 VER=".068.OPO.SKULL.CM12"
+VER="$VER-nvertigo"
 AK_VER="$BASE_AK_VER$VER"
 
 # Vars
 export LOCALVERSION=~`echo $AK_VER`
 export CROSS_COMPILE=${HOME}/android/AK-uber-sabermod/bin/arm-eabi-
+export CROSS_COMPILE=/usr/local/src/uber-toolchain/linaro-arm-eabi-4.9/bin/arm-eabi-
 export ARCH=arm
 export SUBARCH=arm
-export KBUILD_BUILD_USER=ak
-export KBUILD_BUILD_HOST=kernel
+export KBUILD_BUILD_USER=nvertigo
+#export KBUILD_BUILD_HOST=adler
 
 # Paths
 KERNEL_DIR=`pwd`
-REPACK_DIR="${HOME}/android/AK-OnePone-AnyKernel2"
-PATCH_DIR="${HOME}/android/AK-OnePone-AnyKernel2/patch"
-MODULES_DIR="${HOME}/android/AK-OnePone-AnyKernel2/modules"
-ZIP_MOVE="${HOME}/android/AK-releases"
-ZIMAGE_DIR="${HOME}/android/AK-OnePone/arch/arm/boot"
+REPACK_DIR="${BUILD_HOME}/AK-OnePone-AnyKernel2"
+PATCH_DIR="${BUILD_HOME}/AK-OnePone-AnyKernel2/patch"
+MODULES_DIR="${BUILD_HOME}/AK-OnePone-AnyKernel2/modules"
+ZIP_MOVE="${BUILD_HOME}/AK-releases"
+ZIMAGE_DIR="${BUILD_HOME}/AK-OnePone/arch/arm/boot"
 
 # Functions
 function clean_all {
@@ -41,8 +44,8 @@ function clean_all {
 		cd $REPACK_DIR
 		rm -rf $KERNEL
 		rm -rf $DTBIMAGE
-		git reset --hard > /dev/null 2>&1
-		git clean -f -d > /dev/null 2>&1
+#		git reset --hard > /dev/null 2>&1
+#		git clean -f -d > /dev/null 2>&1
 		cd $KERNEL_DIR
 		echo
 		make clean && make mrproper
