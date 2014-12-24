@@ -17,7 +17,7 @@ BUILD_HOME="/usr/local/src/opo-ak-kernel"
 
 # Kernel Details
 BASE_AK_VER="AK"
-VER=".077-nvertigo.OPO.CM11"
+VER=".077-nvertigo-$(date +%Y%m%d)-OPO.CM11"
 AK_VER="$BASE_AK_VER$VER"
 
 # Vars
