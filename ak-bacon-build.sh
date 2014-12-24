@@ -19,6 +19,7 @@ BUILD_HOME="/usr/local/src/opo-ak-kernel"
 BASE_AK_VER="AK"
 VER=".068.OPO.SKULL.CM12"
 VER="$VER-nvertigo"
+VER="$VER-$(date +%Y%m%d)"
 AK_VER="$BASE_AK_VER$VER"
 
 # Vars
